@@ -1,9 +1,9 @@
 # CERP Web API
 
-## 🚀 Project Overview
+##  Project Overview
 This is a professional ASP.NET Core Web API project built using Clean Architecture principles.
 
-## 🔐 Features
+## Features
 - JWT Authentication
 - Role-based Authorization
 - Repository Pattern
@@ -11,23 +11,23 @@ This is a professional ASP.NET Core Web API project built using Clean Architectu
 - Global Exception Handling
 - API Response Standardization
 
-## 🛠 Tech Stack
+## Tech Stack
 - ASP.NET Core Web API
 - C#
 - SQL Server
 - Dapper / Entity Framework
 
-## 📂 Project Structure
+## Project Structure
 - Controllers
 - Services
 - Repository
 - Models
 - Middleware
 
-## ⚙️ How to Run
+## How to Run
 1. Clone the repository
 2. Update connection string in appsettings.json
 3. Run the project
 
-## 👨‍💻 Author
+## Author
 Manikanta H J
