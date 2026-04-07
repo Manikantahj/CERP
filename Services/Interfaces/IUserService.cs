@@ -1,9 +1,9 @@
 ﻿using CERP.Common;
 using CERP.ModelDataTransferObjects.Users.UserInputs;
 using CERP.ModelDataTransferObjects.Users.UserOutputs;
-using CERP.Models.Users;
+using CERP.Entity.Users;
 
-namespace CERP.Services.Interfaces.Users
+namespace CERP.Services.Interfaces
 {
     public interface IUserService
     {

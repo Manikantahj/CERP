@@ -1,6 +1,6 @@
 ﻿namespace CERP.Common
 {
-    public class ApiMessages
+    public static class ApiMessages
     {
         public const string MSG_SUCCESSFULLY_SAVED = "Succesfully Saved";
         public const string MSG_SUCCESSFULLY_UPDATED = "Succesfully Updated";

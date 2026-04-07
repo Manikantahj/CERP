@@ -4,8 +4,7 @@ using CERP.Data;
 using CERP.Logics;
 using CERP.ModelDataTransferObjects.Users.UserInputs;
 using CERP.ModelDataTransferObjects.Users.UserOutputs;
-using CERP.Models.Users;
-using CERP.Services.Interfaces.Users;
+using CERP.Entity.Users;
 using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,8 +14,9 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Reflection.PortableExecutable;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using CERP.Services.Interfaces;
 
-namespace CERP.Controllers.Users
+namespace CERP.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
@@ -30,7 +30,7 @@ namespace CERP.Controllers.Users
         {
             _service = service;
         }
-
+        //smalll update
         
         [HttpPost("UserAdd")]
         [MapToApiVersion("1.0")]

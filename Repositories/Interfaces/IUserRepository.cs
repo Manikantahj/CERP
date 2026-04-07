@@ -1,8 +1,8 @@
-﻿using CERP.ModelDataTransferObjects.Users.UserInputs;
-using CERP.Models.Users;
+﻿using CERP.Entity.Users;
+using CERP.ModelDataTransferObjects.Users.UserInputs;
 using System.Data;
 
-namespace CERP.Repositories.Interfaces.Users
+namespace CERP.Repositories.Interfaces
 {
     public interface IUserRepository
     {

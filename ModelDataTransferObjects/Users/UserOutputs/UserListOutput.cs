@@ -1,5 +1,5 @@
 ﻿using CERP.Common;
-using CERP.Models.Users;
+using CERP.Entity.Users;
 
 namespace CERP.ModelDataTransferObjects.Users.UserOutputs
 {

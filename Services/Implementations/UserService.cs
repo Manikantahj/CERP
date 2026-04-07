@@ -1,14 +1,14 @@
 ﻿using CERP.Common;
 using CERP.Data;
+using CERP.Entity.Users;
 using CERP.ModelDataTransferObjects.Users.UserInputs;
 using CERP.ModelDataTransferObjects.Users.UserOutputs;
-using CERP.Models.Users;
-using CERP.Repositories.Interfaces.Users;
-using CERP.Services.Interfaces.Users;
+using CERP.Repositories.Interfaces;
+using CERP.Services.Interfaces;
 using CERP.UnitOfWork.Interfaces;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace CERP.Services.Implementations.Users
+namespace CERP.Services.Implementations
 {
     public class UserService : IUserService
     {
@@ -28,14 +28,14 @@ namespace CERP.Services.Implementations.Users
                 _uow.BeginTransaction(); 
 
                 //====Used Hashed password concept here....
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(input.user_password);
+                input.user_password = BCrypt.Net.BCrypt.HashPassword(input.user_password);
 
                 
                 //====USER_INSET_OPERATION===================
                 int? inserted_id = await _repo.UserAdd(input, 
                                                       _uow.Connection, 
-                                                      _uow.Transaction, 
-                                                       hashedPassword);
+                                                      _uow.Transaction,
+                                                       input.user_password);
 
                 //===IF USER ALREADY EXIST IT WILL RETURN DIRECTLY==========
                 if (!inserted_id.HasValue || inserted_id <= 0)
@@ -49,7 +49,7 @@ namespace CERP.Services.Implementations.Users
                 _uow.Commit();
                 res.is_success = true;
                 res.msg = ApiMessages.MSG_SUCCESSFULLY_SAVED;
-                res.extra_info = inserted_id?.ToString();
+                res.data = inserted_id?.ToString();
             }
             catch (Exception ex)
             {

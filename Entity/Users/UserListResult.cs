@@ -1,4 +1,4 @@
-﻿namespace CERP.Models.Users
+﻿namespace CERP.Entity.Users
 {
     public class UserListResult
     {

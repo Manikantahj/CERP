@@ -1,19 +1,19 @@
 ﻿using CERP.Data;
+using CERP.Entity.Users;
 using CERP.Logics;
 using CERP.ModelDataTransferObjects.Users.UserInputs;
-using CERP.Models.Users;
-using CERP.Repositories.Interfaces.Users;
+using CERP.Repositories.Interfaces;
 using Dapper;
 using System.Data;
 
-namespace CERP.Repositories.Implementations.Users
+namespace CERP.Repositories.Implementations
 {
     public class UserRepository : IUserRepository
     {
         private readonly DapperContext _db;      
         public UserRepository(DapperContext db)
         {
-            this._db = db;
+            _db = db;
         }
         public async Task<int?> UserAdd(UserAddInput input, IDbConnection connection, IDbTransaction transaction, string hashed_password)
         {            

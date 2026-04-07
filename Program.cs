@@ -1,10 +1,10 @@
 using Asp.Versioning.ApiExplorer;
 using CERP.Data;
 using CERP.Middleware;
-using CERP.Repositories.Implementations.Users;
-using CERP.Repositories.Interfaces.Users;
-using CERP.Services.Implementations.Users;
-using CERP.Services.Interfaces.Users;
+using CERP.Repositories.Implementations;
+using CERP.Repositories.Interfaces;
+using CERP.Services.Implementations;
+using CERP.Services.Interfaces;
 using CERP.Token;
 using CERP.UnitOfWork.Interfaces;
 using CERP.UnitOfWork.UnitOfWorkImplementations;

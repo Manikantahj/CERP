@@ -1,6 +1,6 @@
 ﻿using CERP.ModelDataTransferObjects.Users.UserInputs;
-using CERP.Models.Users;
-using CERP.Services.Interfaces.Users;
+using CERP.Entity.Users;
+using CERP.Services.Interfaces;
 
 namespace CERP.Token
 {
