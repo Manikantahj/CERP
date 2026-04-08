@@ -1,4 +1,5 @@
 ﻿using CERP.Data;
+using CERP.Logics;
 using CERP.ModelDataTransferObjects.Customers;
 using CERP.Repositories.Interfaces;
 using Dapper;
@@ -43,6 +44,34 @@ namespace CERP.Repositories.Implementations
                                                       parameters, 
                                                       transaction: transaction, 
                                                       commandType: CommandType.StoredProcedure);
+
+            foreach (CustomerAddressAdd ads in input.cust_address)
+            {
+                DynamicParameters addressParameters = new DynamicParameters();
+                addressParameters.Add("@customer_id", customer_id);
+                addressParameters.Add("@customer_address_type", ads.customer_address_type);
+                addressParameters.Add("@customer_address_contact_name", ads.customer_address_contact_name);
+                addressParameters.Add("@customer_address_country_code", ads.customer_address_country_code);
+                addressParameters.Add("@customer_address_contact_number", ads.customer_address_contact_number);
+                addressParameters.Add("@customer_address_address_line1", ads.customer_address_address_line1);
+                addressParameters.Add("@customer_address_address_line2", ads.customer_address_address_line2);
+                addressParameters.Add("@customer_address_address_line3", ads.customer_address_address_line3);
+                addressParameters.Add("@customer_address_state_id", ads.customer_address_state_id);
+                addressParameters.Add("@customer_address_country_id", ads.customer_address_country_id);
+                addressParameters.Add("@customer_address_postal_code", ads.customer_address_postal_code);
+                addressParameters.Add("@customer_address_email_address", ads.customer_address_email_address);
+                addressParameters.Add("@customer_address_gstn", ads.customer_address_gstn);
+                addressParameters.Add("@customer_address_vat", ads.customer_address_vat);
+                addressParameters.Add("@customer_address_city", ads.customer_address_city);
+                addressParameters.Add("@customer_address_created_by", ads.logged_in_user_id);
+                addressParameters.Add("@customer_address_created_at", MUtils.getCurrentDateTime());
+                
+
+                await connection.ExecuteAsync("CustomerAddressAdd",
+                                              addressParameters,
+                                              transaction: transaction,
+                                              commandType: CommandType.StoredProcedure);
+            }
 
             return customer_id ?? 0;
         }
