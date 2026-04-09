@@ -6,7 +6,7 @@ namespace CERP.Repositories.Interfaces
     public interface ICustomerRepository
     {
         Task<int> CustomerAdd(CustomerAddInput input, IDbConnection connection, IDbTransaction transaction);
-        Task<int> CustomerAddressAdd(int customerId, CustomerAddressAdd input);
+        Task CustomerAddressAdd(int? customer_id, CustomerAddressAdd input, IDbConnection connection, IDbTransaction transaction);
        
     }
 }
