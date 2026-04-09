@@ -27,13 +27,21 @@ namespace CERP.Services.Implementations
                     int? customer_id   = await _cp.CustomerAdd(input,
                                                             _uow.Connection, 
                                                             _uow.Transaction);
-                if (customer_id.HasValue || customer_id <=0)
+                if (!customer_id.HasValue || customer_id <=0)
                 {
                     _uow.Rollback();
                     res.is_success = false;
                     res.msg = ApiMessages.MSG_ALREADY_EXIST;
                     return res;
                 }
+
+                foreach(var address in input.cust_address)
+                {
+                    _cp.CustomerAddressAdd(customer_id, address, _uow.Connection, _uow.Transaction);
+
+                }
+
+               
 
                 _uow.Commit();
                 res.is_success = true;

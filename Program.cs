@@ -20,6 +20,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICustomerServices, CustomerServices>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 
 builder.Services.AddControllers();
