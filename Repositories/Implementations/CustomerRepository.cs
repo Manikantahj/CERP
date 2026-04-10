@@ -52,7 +52,7 @@ namespace CERP.Repositories.Implementations
         public async Task CustomerAddressAdd(int? customer_id, CustomerAddressAdd input, IDbConnection connection, IDbTransaction transaction)
         {
             DynamicParameters addressParameters = new DynamicParameters();
-                addressParameters.Add("@customer_id", customer_id);
+                addressParameters.Add("@customer_address_customer_id", customer_id);
                 addressParameters.Add("@customer_address_type", input.customer_address_type);
                 addressParameters.Add("@customer_address_contact_name", input.customer_address_contact_name);
                 addressParameters.Add("@customer_address_country_code", input.customer_address_country_code);
