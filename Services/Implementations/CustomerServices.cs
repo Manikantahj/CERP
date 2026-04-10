@@ -27,7 +27,7 @@ namespace CERP.Services.Implementations
                     int? customer_id   = await _cp.CustomerAdd(input,
                                                             _uow.Connection, 
                                                             _uow.Transaction);
-                if (!customer_id.HasValue || customer_id <=0)
+                if (customer_id <=0)
                 {
                     _uow.Rollback();
                     res.is_success = false;
@@ -35,14 +35,16 @@ namespace CERP.Services.Implementations
                     return res;
                 }
 
-                foreach(var address in input.cust_address)
+
+                if (input.cust_address != null && input.cust_address.Count() > 0)
                 {
-                    _cp.CustomerAddressAdd(customer_id, address, _uow.Connection, _uow.Transaction);
+                    foreach (var address in input.cust_address)
+                    {
+                        await _cp.CustomerAddressAdd(customer_id, address, _uow.Connection, _uow.Transaction);
 
+                    }
                 }
-
-               
-
+                        
                 _uow.Commit();
                 res.is_success = true;
                 res.msg = ApiMessages.MSG_SUCCESSFULLY_SAVED;

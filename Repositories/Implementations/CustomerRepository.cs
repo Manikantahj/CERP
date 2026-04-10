@@ -71,14 +71,10 @@ namespace CERP.Repositories.Implementations
                 addressParameters.Add("@customer_address_created_at", MUtils.getCurrentDateTime());
 
 
-            int rows = await connection.ExecuteAsync("CustomerAddressAdd",
+            await connection.ExecuteAsync("CustomerAddressAdd",
                                               addressParameters,
                                               transaction: transaction,
-                                              commandType: CommandType.StoredProcedure);
-            if (rows <= 0)
-            {
-                throw new Exception("Address insert failed");
-            }
+                                              commandType: CommandType.StoredProcedure);            
         }
     }
 }
