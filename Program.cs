@@ -146,7 +146,28 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
     });
 
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
+});
+
+
+
+
+
+
+
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -167,6 +188,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 var jwtSettings = builder.Configuration.GetSection("Jwt");
+
+
 
 
 

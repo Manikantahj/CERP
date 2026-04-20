@@ -24,9 +24,8 @@ namespace CERP.Services.Implementations
                 //============= Validation logic here =============
                 _uow.BeginTransaction();
 
-                    int? customer_id   = await _cp.CustomerAdd(input,
-                                                            _uow.Connection, 
-                                                            _uow.Transaction);
+                    int? customer_id   = await _cp.CustomerAdd(input, _uow.Connection, _uow.Transaction);
+
                 if (customer_id <=0)
                 {
                     _uow.Rollback();
@@ -34,14 +33,11 @@ namespace CERP.Services.Implementations
                     res.msg = ApiMessages.MSG_ALREADY_EXIST;
                     return res;
                 }
-
-
                 if (input.cust_address != null && input.cust_address.Count() > 0)
                 {
                     foreach (var address in input.cust_address)
                     {
                         await _cp.CustomerAddressAdd(customer_id, address, _uow.Connection, _uow.Transaction);
-
                     }
                 }
                         
